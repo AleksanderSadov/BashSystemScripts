@@ -7,6 +7,12 @@ fi
 
 echo "INFO: Checking latest version of jq"
 
+sudo apt-get install curl -y -qq > /dev/null
+if [[ $? -ne 0 ]]; then
+    echo "ERROR: Unable to install curl"
+    exit 1
+fi
+
 releasePath="https://api.github.com/repos/stedolan/jq/releases/latest"
 tagName=$(curl -s -L ${releasePath} | grep "tag_name" | sed -E 's/.*"([^"]+)".*/\1/') > /dev/null
 if [[ -z ${tagName} ]]; then
