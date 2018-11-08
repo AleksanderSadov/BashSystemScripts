@@ -21,7 +21,8 @@ if [[ ! -z "${settingsDirectory}" ]]; then
 fi
 
 desktopEntryName="jetbrains-phpstorm.desktop"
-userDesktopEntry="/home/$USER/.local/share/applications/${desktopEntryName}"
+currentUser="$(printenv USER)"
+userDesktopEntry="/home/${currentUser}/.local/share/applications/${desktopEntryName}"
 if [[ -f ${userDesktopEntry} ]]; then
     sudo rm ${userDesktopEntry} > /dev/null
     if [[ $? -ne 0 ]]; then
